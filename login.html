@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        // Function untuk menghilangkan pesan kesalahan saat halaman dimuat ulang
+        window.onload = function() {
+            var errorAlert = document.getElementById("error-alert");
+            if (errorAlert.style.display !== "none") {
+                errorAlert.style.display = "none";
+            }
+        };
+    </script>
+</head>
+<body>
+    <!-- Tampilkan form login dengan daftar email menggunakan <li> -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Login</h3>
+                        <div id="error-alert" class="alert alert-danger" role="alert" style="display: {{if .Error}}block{{else}}none{{end}}">
+                            Email tidak terdaftar. Silakan coba lagi.
+                        </div>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="email">Masukkan Email:</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                <label for="email">Masukkan Password:</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        <h4 class="mt-4">Email Tersedia:</h4>
+                        <ul>
+                            {{range $email := .BiodataList}}
+                            <li>{{$email}}</li>
+                            {{end}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
